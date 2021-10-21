@@ -154,9 +154,9 @@ namespace Typewriter
         {
             Typewriter typewriter = new Typewriter(8, 8, 4, Encoding.ASCII);
             string commands = "v+#vvv<<<#v<##>>>#>^-#<^^+#vvv#v>>>#^>>#^#<<<-#";
-            Key(8, 8, 4, Encoding.ASCII);
-            //string output = typewriter.executeCommands(commands.ToCharArray());
-            //Console.WriteLine(output);
+            //Key(8, 8, 4, Encoding.ASCII);
+            string output = typewriter.executeCommands(commands.ToCharArray());
+            Console.WriteLine(output);
         }
     }
 }
