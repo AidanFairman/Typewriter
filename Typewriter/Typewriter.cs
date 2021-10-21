@@ -137,9 +137,9 @@ namespace Typewriter
         {
             Typewriter typewriter = new Typewriter(8, 8, 4, Encoding.ASCII);
             string commands = "v+#vvv<<<#v<##>>>#>^-#<^^+#vvv#v>>>#^>>#^#<<<-#";
-            ASCIIKey();
-            //string output = typewriter.executeCommands(commands.ToCharArray());
-            //Console.WriteLine(output);
+            //ASCIIKey();
+            string output = typewriter.executeCommands(commands.ToCharArray());
+            Console.WriteLine(output);
         }
     }
 }
