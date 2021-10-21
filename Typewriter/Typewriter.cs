@@ -152,6 +152,8 @@ namespace Typewriter
         }
         static void Main(string[] args)
         {
+            //Key(8, 8, 4, Encoding.ASCII);
+            //Key(16, 16, 1, Encoding.ASCII);
             Typewriter typewriter = new Typewriter(8, 8, 4, Encoding.ASCII);
             string commands = "v+#vvv<<<#v<##>>>#>^-#<^^+#vvv#v>>>#^>>#^#<<<-#";
             string output = typewriter.executeCommands(commands.ToCharArray());
@@ -160,7 +162,6 @@ namespace Typewriter
             commands = "vvvv>>>>>>>>#vv<<<#>>>>>>>##>>>#^^^^>#vvv>>>>>>>#v>>>>>>>>#>>>v#<<<<<<^#<<<<<<<<#^^^^<<<#";
             output = typewriter.executeCommands(commands.ToCharArray());
             Console.WriteLine(output);
-            //Key(16, 16, 1, Encoding.ASCII);
         }
     }
 }
