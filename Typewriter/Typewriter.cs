@@ -116,20 +116,37 @@ namespace Typewriter
             Console.WriteLine("Latin1 Name: " + Encoding.Latin1.EncodingName);
             Console.WriteLine("Latin1 Web Name: " + Encoding.Latin1.WebName);
         }
-        private static void ASCIIKey()
+        private static void Key(int width, int height, int depth, Encoding encoding)
         {
-            for(int p = 0 ; p < 4 ; ++p)
+            List<byte> byteBuffer = new List<byte>();
+            for(int d = 0 ; d < depth ; ++d)
             {
-                Console.WriteLine("_________________________________");
-                for(int h = 0 ; h < 8 ; ++h)
+                for(int i = 0 ; i < (width * 3) + width + 1 ; ++i)
+                {
+                    Console.Write("_");
+                }
+                Console.WriteLine();
+                for(int h = 0 ; h < height ; ++h)
                 {
                     Console.Write("|");
-                    for(int w = 0 ; w < 8 ; ++w)
+                    for(int w = 0 ; w < width ; ++w)
                     {
-                        Console.Write($"{(char)(w + (h * 8) + (p * 64)),3}|");
+                        int c = w + (h * width) + (d * width * height);
+                        while(c > 0)
+                        {
+                            byteBuffer.Add((byte)(c % byte.MaxValue));
+                            c /= byte.MaxValue;
+                        }
+                        string s = encoding.GetString(byteBuffer.ToArray());
+                        Console.Write($"{s,3}|");
+                        byteBuffer.Clear();
                     }
                     Console.WriteLine();
-                    Console.WriteLine("_________________________________");
+                    for(int k = 0 ; k < (width * 3) + width + 1 ; ++k)
+                    {
+                        Console.Write("_");
+                    }
+                    Console.WriteLine();
                 }
             }
         }
@@ -137,9 +154,9 @@ namespace Typewriter
         {
             Typewriter typewriter = new Typewriter(8, 8, 4, Encoding.ASCII);
             string commands = "v+#vvv<<<#v<##>>>#>^-#<^^+#vvv#v>>>#^>>#^#<<<-#";
-            //ASCIIKey();
-            string output = typewriter.executeCommands(commands.ToCharArray());
-            Console.WriteLine(output);
+            Key(8, 8, 4, Encoding.ASCII);
+            //string output = typewriter.executeCommands(commands.ToCharArray());
+            //Console.WriteLine(output);
         }
     }
 }
