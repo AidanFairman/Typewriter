@@ -14,9 +14,9 @@ namespace Typewriter
 
         public Typewriter(int len, int wid, int depth, Encoding encoding)
         {
-            dim1 = len;
-            dim2 = wid;
-            dim3 = depth;
+            dim1 = len > 0 ? len : 1;
+            dim2 = wid > 0 ? wid : 1;
+            dim3 = depth > 0 ? depth : 1;
             val2 = dim1 * dim2;
             loc1 = loc2 = loc3 = 0;
             this.encoding = encoding;
@@ -154,9 +154,13 @@ namespace Typewriter
         {
             Typewriter typewriter = new Typewriter(8, 8, 4, Encoding.ASCII);
             string commands = "v+#vvv<<<#v<##>>>#>^-#<^^+#vvv#v>>>#^>>#^#<<<-#";
-            //Key(8, 8, 4, Encoding.ASCII);
             string output = typewriter.executeCommands(commands.ToCharArray());
             Console.WriteLine(output);
+            typewriter = new Typewriter(16, 16, 1, Encoding.ASCII);
+            commands = "vvvv>>>>>>>>#vv<<<#>>>>>>>##>>>#^^^^>#vvv>>>>>>>#v>>>>>>>>#>>>v#<<<<<<^#<<<<<<<<#^^^^<<<#";
+            output = typewriter.executeCommands(commands.ToCharArray());
+            Console.WriteLine(output);
+            //Key(16, 16, 1, Encoding.ASCII);
         }
     }
 }
